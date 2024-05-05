@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arranging Images</title>
+</head>
+<style>
+.image-container {
+  position: relative;
+  width: 100vw; /* 100% of viewport width */
+  height: auto; /* Let height adjust to maintain aspect ratio */
+  max-width: 100%; /* Ensure it doesn't overflow horizontally */
+}
+
+.image-container img {
+  position: absolute;
+  width: 200px; /* Adjust this according to the width of individual images */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.image-container img:nth-child(1) {
+  top: 0;
+  left: 0;
+  bottom: auto;
+}
+
+.image-container img:nth-child(2) {
+  top: 0;
+  left: 200px;
+}
+
+.image-container img:nth-child(3) {
+  top: 0;
+  bottom: auto;
+  left: 400px;
+}
+
+.image-container img:nth-child(4) {
+  top: 200px;
+  bottom: auto;
+  left: 0;
+}
+
+.image-container img:nth-child(5) {
+  top: 200px;
+  left: 200px;
+}
+
+.image-container img:nth-child(6) {
+  top: 200px;
+  left: 400px;
+}
+
+</style>
+<body>
+  <div class="image-container">
+    <img src="4.jpg" alt="Image 1">
+    <img src="3.jpg" alt="Image 2">
+    <img src="1.jpg" alt="Image 3">
+    <img src="6.jpg" alt="Image 4">
+    <img src="2.jpg" alt="Image 5">
+    <img src="5.jpg" alt="Image 6">
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSys TP</title>
+    </head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        form {
+            text-align: center;
+        }
+        
+        #Age {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            width: 200px;
+            outline: none;
+        }
+        #Age::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            outline: none;
+        }
+        .banner{
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0%;
+            z-index: -1;
+        }
+        .glassWrapper {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            z-index: -1;
+        }
+  </style>
+    <body>
+        <div class="banner" style="background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpsLfFrv_Z68h17zbWyM2FuPEMU563aNIt42G-zBA5BnFg3WSdO9tkpC48SRmT6-LnDBB_dBFyDrjr5Ij6RYD9yEiaBvcVTVhLAfLZUiwn9vae6FuLFk1L4tdAM7NF5HHe7Tx_Rcak9Iyg/w919/iu-singer-uhdpaper.com-4K-4.1443-wp.thumbnail.jpg);"></div>
+        <div class="glassWrapper"></div>
+        <form>
+            <input id= "Num"type="text" required placeholder="Enter a number">
+            <button onclick="getNum()">Submit</button>
+        </form>
+    </body>
+    <script>
+
+        const sql = require('mssql');
+
+        // Database configuration
+        const config = {
+        user: 'Jennie',
+        password: '2harmaine!',
+        server: 'capstoneliwanag.database.windows.net',
+        database: 'Capstone',
+        options: {
+            encrypt: true, // For Azure SQL Database
+        }
+        };
+        
+        
+        function getNum() {
+            sql.connect(config)
+            .then(pool => {
+                console.log('Connected to SQL Server');
+
+                var input = "Zhar";
+                console.log(input);
+                // Query example
+                return pool.request()
+                .query(`INSERT INTO Bright VALUES ('${input}');`);
+            })
+            .then(result => {
+                console.log(result.recordset); // Output the query result
+            })
+            .catch(err => {
+                console.error('Error connecting to SQL Server:', err);
+            });
+        
+            var input = document.getElementById('Num').value;
+
+            if (input < 100){
+                window.alert(input + " is less than 100");
+            }
+            else{
+                alert( input + " is greater than 100");
+            }
+        }
+    </script>
+</html>

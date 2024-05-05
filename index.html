@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form with SQL Server Database</title>
+</head>
+<body>
+<h2>Submit Form Data to SQL Server Database</h2>
+<form id="myForm" onsubmit="event.preventDefault(); submitForm();" action="/submit" method="post">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function submitForm() {
+    // Get the values of individual input fields
+    var nameValue = document.getElementById("name").value;
+    var emailValue = document.getElementById("email").value;
+
+    // Create FormData object and append input field values to it
+   var formData = {
+        name: nameValue,
+        email: emailValue
+   };
+   console.log(formData);
+    // Create XMLHttpRequest and send FormData
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 500) {
+                console.log(formData)
+                alert("Data successfully submitted!" + formData);
+            } else {
+                alert("Error: " + xhr.status);
+            }
+        }
+    };
+    xhr.open("POST", "/submit");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(formData));
+}
+</script>
+</body>
+</html>
